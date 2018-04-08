@@ -1,0 +1,161 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "description" : "Todo API",
+    "version" : "0.1",
+    "title" : "Todo API"
+  },
+  "host" : "todoapp-spring-services-marendo-demo.193b.starter-ca-central-1.openshiftapps.com",
+  "basePath" : "/api",
+  "schemes" : [ "http" ],
+  "paths" : {
+    "/todos" : {
+      "get" : {
+        "summary" : "Return all todos",
+        "parameters" : [ ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "type" : "array",
+              "items" : {
+                "$ref" : "#/definitions/todo_ext"
+              }
+            }
+          },
+          "default" : {
+            "description" : "Definition generated from Swagger Inspector"
+          }
+        }
+      },
+      "post" : {
+        "summary" : "Add todo",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/todo"
+          },
+          "x-examples" : {
+            "application/json" : "{\"title\":\"Prueba\",\"completed\":false}"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/todo_ext"
+            }
+          },
+          "default" : {
+            "description" : "Definition generated from Swagger Inspector"
+          }
+        }
+      }
+    },
+    "/todos/{id}" : {
+      "get" : {
+        "summary" : "Return todo {id}",
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/todo_ext"
+            }
+          },
+          "default" : {
+            "description" : "Definition generated from Swagger Inspector"
+          }
+        }
+      },
+      "put" : {
+        "summary" : "Modify todo {id}",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "in" : "body",
+          "name" : "body",
+          "required" : false,
+          "schema" : {
+            "$ref" : "#/definitions/todo"
+          },
+          "x-examples" : {
+            "application/json" : "{\n    \"title\": \"Prueba\",\n    \"completed\": true\n}"
+          }
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "successful operation",
+            "schema" : {
+              "$ref" : "#/definitions/todo_ext"
+            }
+          },
+          "default" : {
+            "description" : "Definition generated from Swagger Inspector"
+          }
+        }
+      },
+      "delete" : {
+        "summary" : "Delete todo {id}",
+        "consumes" : [ "application/json" ],
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "default" : {
+            "description" : "Definition generated from Swagger Inspector"
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "todo" : {
+      "properties" : {
+        "title" : {
+          "type" : "string"
+        },
+        "completed" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "todo_ext" : {
+      "properties" : {
+        "id" : {
+          "type" : "string"
+        },
+        "title" : {
+          "type" : "string"
+        },
+        "completed" : {
+          "type" : "boolean"
+        },
+        "createdAt" : {
+          "type" : "string"
+        }
+      },
+      "example" : {
+        "createdAt" : "createdAt",
+        "id" : "id",
+        "completed" : true,
+        "title" : "title"
+      }
+    }
+  }
+}
